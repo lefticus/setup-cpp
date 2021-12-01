@@ -12,6 +12,11 @@ let pip: string | undefined
 
 let binDir: string | undefined
 
+let pipCacheKey = ""
+export function getPipCacheKey() {
+  return pipCacheKey
+}
+
 /** A function that installs a package using pip */
 export async function setupPipPack(name: string, version?: string) {
   // setup python and pip if needed
@@ -25,6 +30,7 @@ export async function setupPipPack(name: string, version?: string) {
       pip = "pip3"
     }
   }
+  pipCacheKey = `${pipCacheKey}${name}-${version}`
 
   execa.sync(pip, ["install", version !== undefined && version !== "" ? `${name}==${version}` : name])
 

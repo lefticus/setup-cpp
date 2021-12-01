@@ -26,6 +26,8 @@ import { error, success } from "./utils/io/io"
 import { setupVcpkg } from "./vcpkg/vcpkg"
 import { join } from "path"
 import { warning } from "@actions/core"
+import * as cache from "@actions/cache"
+import { getPipCacheKey } from "./utils/setup/setupPipPack"
 
 /** The setup functions */
 const setups = {
@@ -169,6 +171,13 @@ export async function main(args: string[]): Promise<number> {
         }
       }
     }
+
+    // cache pip
+    const key = getPipCacheKey()
+    if (key !== "") {
+      await cache.saveCache(["~/.cache/pip", "~/AppData/Local/pip/cache"], key)
+    }
+
   } catch (e) {
     error(e as string | Error)
     errorMessages.push(`Failed to install the ${maybeCompiler}`)
