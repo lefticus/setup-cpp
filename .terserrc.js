@@ -8,6 +8,8 @@ const compress =
           ...terserConfig.compress.global_defs,
           "process.env.NODE_DEBUG": false,
           "process.env.RUNNER_DEBUG": "0",
+          "@core.debug": "() => {}",
+          "@core.isDebug": "() => false",
         },
       }
     : terserConfig.compress
