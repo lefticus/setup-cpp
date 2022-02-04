@@ -39,7 +39,7 @@
     "mri": "^1.2.0",
     "msvc-dev-cmd": "git://github.com/aminya/msvc-dev-cmd#9f672c1",
     "semver": "^7.3.5",
-    "setup-python": "https://github.com/actions/setup-python#7f80679172b057fc5e90d70d197929d454754a5a",
+    "setup-python": "git://github.com/actions/setup-python#v2",
     "untildify": "^4.0.0",
     "which": "^2.0.2"
   },
